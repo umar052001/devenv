@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# Default XDG_CONFIG_HOME if not set
+: ${XDG_CONFIG_HOME:="$HOME/.config"}
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+dry="0"
+
+while [[ $# -gt 0 ]]; do
+    if [[ "$1" == "--dry" ]]; then
+        dry="1"
+    fi
+    shift
+done
+
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $@"
+    else
+        echo "$@"
+    fi
+}
+
+execute() {
+    log "execute: $@"
+    if [[ $dry == "1" ]]; then
+        return
+    fi
+    "$@"
+}
+
+log "--------- dev-env ---------"
+cd "$script_dir" || { echo "Failed to change directory to $script_dir"; exit 1; }
+
+copy_dir() {
+    local src_dir="$1"
+    local dest_dir="$2"
+
+    # Enter the source directory (e.g. .config)
+    pushd "$src_dir" > /dev/null || { echo "Failed to enter directory $src_dir"; return 1; }
+    
+    # Loop through each subdirectory
+    for dir in */ ; do
+        # Remove trailing slash for consistency
+        dir=${dir%/}
+        execute rm -rf "$dest_dir/$dir"
+        execute cp -r "$dir" "$dest_dir/$dir"
+    done
+
+    popd > /dev/null || return
+}
+
+# Copy subdirectories from the .config folder into the user's XDG_CONFIG_HOME
+copy_dir ".config" "$XDG_CONFIG_HOME"
+
+copy_file() {
+    local from="$1"
+    local to="$2"
+    local name
+    name=$(basename "$from")
+    
+    # Remove any existing destination file
+    execute rm -f "$to/$name"
+    execute cp "$from" "$to/$name"
+}
+
+# Copy .specialconfig from the script directory to the home directory.
+copy_file ".zshrc" "$HOME"
+
