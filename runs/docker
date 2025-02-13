@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Update package index
+sudo apt update
+
+# Install Docker from Ubuntu's repositories
+sudo apt install -y docker.io docker-compose
+
+# Add your user to the docker group
+sudo usermod -aG docker $USER
+
+# Enable and start Docker service
+sudo systemctl enable docker
+sudo systemctl start docker
+
+# Verify Docker installation
+echo "Docker version:"
+docker --version
+
+# Important note for the user
+echo -e "\n\e[1;33mImportant:\e[0m You need to log out and back in, or restart your system, for the group changes to take effect."
+echo "After logging back in, you can verify with: docker run hello-world"
