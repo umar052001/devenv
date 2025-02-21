@@ -124,10 +124,15 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+# Increase brightness with F3
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+
+# Decrease brightness with F2
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
 
 # Start i3bar to display workspace bar (with system information)
 bar {
     status_command i3status
     tray_output primary
 }
-
