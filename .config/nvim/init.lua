@@ -55,3 +55,5 @@ vim.keymap.set('n', '<leader>e', ':e<CR>', opts)    -- Reload file (Space + e)
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', opts)  -- Close current buffer (Space + b + d)
 vim.keymap.set('n', '<leader>pv', ':Ex<CR>', opts)  -- Open file explorer (Space + p + v)
 vim.keymap.set('n', '<leader>mx', ':!chmod +x %<CR>', opts)  -- Make current file executable
+vim.keymap.set('n', 'Y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('v', 'Y', '"+y', { noremap = true, silent = true })
