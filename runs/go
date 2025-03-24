@@ -1,0 +1,38 @@
+#!/usr/bin/env zsh  
+
+# Update package index
+sudo apt update
+
+# Install prerequisites
+sudo apt install -y curl
+
+# Set Go version (update this to the latest stable version as needed)
+GO_VERSION="1.22.1"
+
+# Download Go binary
+curl -LO "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+
+# Remove any previous Go installation and extract the new one
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go${GO_VERSION}.linux-amd64.tar.gz"
+
+# Clean up downloaded file
+rm "go${GO_VERSION}.linux-amd64.tar.gz"
+
+# Add Go to PATH by appending to .zshrc (if not already present)
+if ! grep -q "/usr/local/go/bin" ~/.zshrc; then
+    echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.zshrc
+fi
+
+# Apply the changes to current session
+source ~/.zshrc
+
+# Verify Go installation
+echo "Go version:"
+go version
+
+# Important note for the user
+echo -e "\n\e[1;33mNote:\e[0m If 'go version' didn't work immediately, you might need to:"
+echo "1. Either close and reopen your terminal"
+echo "2. Or run 'source ~/.zshrc' again"
+echo "After that, you can verify with: go version"
