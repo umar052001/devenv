@@ -26,6 +26,10 @@ end
 local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- Packer can manage itself
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   use 'neovim/nvim-lspconfig'   -- LSP configurations
   use 'hrsh7th/nvim-cmp'        -- Autocompletion
   use 'hrsh7th/cmp-nvim-lsp'    -- LSP source for nvim-cmp
@@ -40,6 +44,7 @@ end)
 require('treesitter')          -- Treesitter setup
 require('go')                  -- Go language setup
 require('typescript')          -- Typescript language setup
+require('telescope-config')
 
 -- Setup color scheme
 vim.g.rose_pine_variant = 'main'
@@ -57,3 +62,5 @@ vim.keymap.set('n', '<leader>pv', ':Ex<CR>', opts)  -- Open file explorer (Space
 vim.keymap.set('n', '<leader>mx', ':!chmod +x %<CR>', opts)  -- Make current file executable
 vim.keymap.set('n', 'Y', '"+y', { noremap = true, silent = true })
 vim.keymap.set('v', 'Y', '"+y', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
+

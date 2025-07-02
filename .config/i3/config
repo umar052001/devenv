@@ -21,7 +21,8 @@ floating_modifier $mod
 # Keybindings for launching terminal and killing windows
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
-
+# Lock the screen with Mod+x
+bindsym $mod+x exec i3lock -c 000000
 # Program launcher (dmenu)
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
