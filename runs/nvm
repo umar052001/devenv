@@ -1,0 +1,35 @@
+# --- Install NVM, Node.js, and set up shell configuration ---
+
+echo "Installing nvm (Node Version Manager) and Node.js..."
+
+# Define the nvm directory
+export NVM_DIR="$HOME/.nvm"
+
+# Install nvm by cloning the repository
+if [ ! -d "$NVM_DIR" ]; then
+  git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+  cd "$NVM_DIR"
+  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+  \. "$NVM_DIR/nvm.sh"
+fi
+
+# Add nvm configuration to .zshrc if it's not already there
+if ! grep -q 'export NVM_DIR' ~/.zshrc; then
+  echo '
+# NVM Configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+' >> ~/.zshrc
+fi
+
+# Source nvm to use it in the current script
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Install the latest LTS version of Node.js and set it as default
+echo "Installing Node.js LTS and setting it as default..."
+nvm install --lts
+nvm alias default 'lts/*'
+
+echo "nvm and Node.js installation complete."
+echo "Please restart your terminal session to apply all changes."

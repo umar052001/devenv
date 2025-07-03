@@ -110,4 +110,7 @@ GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#this is new
+# Manage python environments
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"

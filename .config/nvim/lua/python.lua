@@ -1,4 +1,4 @@
--- Go language server configuration
+-- Python language server configuration
 local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true, buffer=bufnr }
 
@@ -12,14 +12,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, opts)
   end
 end
-require('lspconfig').gopls.setup({
+require('lspconfig').pyright.setup({
   on_attach = on_attach,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true, -- Enable unused parameter analysis
-      },
-      staticcheck = true,   -- Enable staticcheck
-    },
-  },
 })

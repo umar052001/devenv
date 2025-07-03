@@ -10,7 +10,6 @@ vim.opt.expandtab = true       -- Use spaces instead of tabs
 vim.opt.smartindent = true     -- Smart indentation
 vim.opt.wrap = false           -- Disable line wrapping
 vim.opt.termguicolors = true   -- Enable 24-bit RGB colors
-
 -- Plugin management with packer.nvim
 local ensure_packer = function()
   local fn = vim.fn
@@ -44,6 +43,7 @@ end)
 require('treesitter')          -- Treesitter setup
 require('go')                  -- Go language setup
 require('typescript')          -- Typescript language setup
+require('python')          -- Pthon language setup
 require('telescope-config')
 
 -- Setup color scheme
@@ -51,16 +51,14 @@ vim.g.rose_pine_variant = 'main'
 vim.g.rose_pine_bold_vert_split = true
 vim.g.rose_pine_dim_nc_background = true
 require('rose-pine').setup()
--- Key mappings for Ex commands
-local opts = { noremap = true, silent = true } -- Options for key mappings: non-recursive and silent
-vim.keymap.set('n', '<leader>w', ':w<CR>', opts)    -- Save file (Space + w)
-vim.keymap.set('n', '<leader>q', ':q<CR>', opts)    -- Quit Neovim (Space + q)
-vim.keymap.set('n', '<leader>wq', ':wq<CR>', opts)  -- Save and quit (Space + w + q)
-vim.keymap.set('n', '<leader>e', ':e<CR>', opts)    -- Reload file (Space + e)
-vim.keymap.set('n', '<leader>bd', ':bd<CR>', opts)  -- Close current buffer (Space + b + d)
-vim.keymap.set('n', '<leader>pv', ':Ex<CR>', opts)  -- Open file explorer (Space + p + v)
-vim.keymap.set('n', '<leader>mx', ':!chmod +x %<CR>', opts)  -- Make current file executable
+-- Key mappings
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>w', ':w<CR>', opts)
+vim.keymap.set('n', '<leader>q', ':q<CR>', opts)
+vim.keymap.set('n', '<leader>wq', ':wq<CR>', opts)
+vim.keymap.set('n', '<leader>e', ':e<CR>', opts)
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', opts)
+vim.keymap.set('n', '<leader>pv', ':Ex<CR>', opts)
+vim.keymap.set('n', '<leader>mx', ':!chmod +x %<CR>', opts)
 vim.keymap.set('n', 'Y', '"+y', { noremap = true, silent = true })
 vim.keymap.set('v', 'Y', '"+y', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
-
