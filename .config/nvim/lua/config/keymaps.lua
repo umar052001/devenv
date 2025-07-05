@@ -11,6 +11,11 @@ vim.keymap.set('n', '<leader>bd', ':bd<CR>', opts)
 vim.keymap.set('n', '<leader>pv', ':Ex<CR>', opts)
 vim.keymap.set('n', '<leader>mx', ':!chmod +x %<CR>', opts)
 
+
 -- System clipboard
-vim.keymap.set('n', 'Y', '"+y', opts)
-vim.keymap.set('v', 'Y', '"+y', opts)
+vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>p', '"+p')
+vim.keymap.set('n', '<leader>P', '"+P')
+vim.keymap.set('v', '<leader>p', '"+p')
+vim.keymap.set('v', '<leader>P', '"+P')
