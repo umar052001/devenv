@@ -17,7 +17,26 @@ for_window [class="^.*"] client.focused #77dd77 #285577 #ffffff #2e9ef4   #28557
 
 # Floating window modifier
 floating_modifier $mod
-
+# -----------------------------------------------------------------
+# 1. Assign applications to specific workspaces
+#
+# This tells i3 where to move a window as soon as it appears.
+# This is the key to solving the startup issue.
+# -----------------------------------------------------------------
+for_window [class="(?i)google-chrome"] move to workspace number 1
+for_window [class="(?i)Gnome-terminal"] move to workspace number 2
+for_window [class="(?i)draw.io"] move to workspace number 3
+for_window [class="(?i)obsidian"] move to workspace number 4
+# -----------------------------------------------------------------
+# 2. Autostart Applications
+#
+# These commands just launch the apps. The rules above will
+# handle placing them correctly.
+# -----------------------------------------------------------------
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id gnome-terminal
+exec --no-startup-id flatpak run com.jgraph.drawio.desktop
+exec --no-startup-id obsidian
 # Keybindings for launching terminal and killing windows
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
