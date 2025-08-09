@@ -43,9 +43,13 @@ bindsym $mod+Shift+q kill
 # Lock the screen with Mod+x
 bindsym $mod+x exec i3lock -c 000000
 # Program launcher (dmenu)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show combi
 
-#setup flameshot for screenshot
+# Spotlight search (fzf)
+bindsym $mod+space exec --no-startup-id "$HOME/.local/scripts/spotlight"
+# setup flameshot for screenshot
 bindsym Print exec flameshot gui
 
 

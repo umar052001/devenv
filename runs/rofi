@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# This script installs the Rofi application launcher using the Homebrew package manager.
+# It first ensures Homebrew is installed before proceeding.
+
+# Check if the 'brew' command is available
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing Homebrew..."
+    # Install Homebrew using the official, non-interactive script
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Add Homebrew to the current session's PATH.
+    # The correct path depends on the system architecture.
+    echo "Adding Homebrew to your PATH for this session..."
+    if [[ "$(uname -m)" == 'arm64' ]]; then
+        # Path for Apple Silicon Macs (M1, M2, etc.)
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        # Path for Intel-based Macs
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+    echo "To make Homebrew available in all terminal sessions, you might need to add it to your shell's startup file (e.g., ~/.zshrc)."
+else
+    echo "Homebrew is already installed."
+fi
+
+# Update Homebrew to ensure all formulae are current
+echo "Updating Homebrew..."
+brew update
+
+# Install Rofi
+echo "Installing rofi..."
+brew install rofi
+
+echo "Rofi has been successfully installed via Homebrew."
+
+

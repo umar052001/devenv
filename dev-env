@@ -52,7 +52,6 @@ copy_dir() {
 
 # Copy subdirectories from the .config folder into the user's XDG_CONFIG_HOME
 copy_dir ".config" "$XDG_CONFIG_HOME"
-
 copy_file() {
     local from="$1"
     local to="$2"
@@ -66,4 +65,7 @@ copy_file() {
 
 # Copy .specialconfig from the script directory to the home directory.
 copy_file ".zshrc" "$HOME"
+
+log "Copying .local directory..."
+copy_dir ".local" "$HOME/.local"
 
