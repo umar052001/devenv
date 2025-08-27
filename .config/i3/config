@@ -25,8 +25,8 @@ floating_modifier $mod
 # -----------------------------------------------------------------
 for_window [class="(?i)google-chrome"] move to workspace number 1
 for_window [class="(?i)Gnome-terminal"] move to workspace number 2
-for_window [class="(?i)draw.io"] move to workspace number 3
-for_window [class="(?i)obsidian"] move to workspace number 4
+#for_window [class="(?i)draw.io"] move to workspace number 3
+for_window [class="(?i)obsidian"] move to workspace number 3
 # -----------------------------------------------------------------
 # 2. Autostart Applications
 #
@@ -35,7 +35,7 @@ for_window [class="(?i)obsidian"] move to workspace number 4
 # -----------------------------------------------------------------
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id gnome-terminal
-exec --no-startup-id flatpak run com.jgraph.drawio.desktop
+#exec --no-startup-id flatpak run com.jgraph.drawio.desktop
 exec --no-startup-id obsidian
 # Keybindings for launching terminal and killing windows
 bindsym $mod+Return exec i3-sensible-terminal
