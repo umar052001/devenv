@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
-git clone -b v0.10.2 https://github.com/neovim/neovim.git $HOME/personal/neovim 
-sudo apt install -y cmake gettext lua5.1 liblua5.1-0-dev 
-cd $HOME/personal/neovim 
-make CMAKE_BUILD_TYPE=RelWithDebInfo 
-sudo make install
 
+# Remove the old source code directory to ensure a fresh clone
+rm -rf $HOME/personal/neovim
+
+# Clone the latest stable branch of Neovim
+git clone --branch stable https://github.com/neovim/neovim.git $HOME/personal/neovim
+
+# Install build dependencies
+sudo apt install -y cmake gettext lua5.1 liblua5.1-0-dev
+
+# Navigate into the source directory
+cd $HOME/personal/neovim
+
+# Build and install
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
