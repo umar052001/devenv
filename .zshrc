@@ -80,7 +80,9 @@ export PATH="$HOME/personal/fzf/bin:$PATH"
 
 # Enable fzf key bindings and completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
- 
+ # Enable fzf keybindings and completion
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 # Added for go blueprint
 GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
