@@ -1,8 +1,7 @@
--- ~/.config/nvim/lua/plugins/cmp.lua
-
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
+		"zbirenbaum/copilot-cmp",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
@@ -11,7 +10,6 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -28,6 +26,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "copilot", group_index = 2 },
 			}, {
 				{ name = "buffer" },
 				{ name = "path" },
