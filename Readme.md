@@ -1,5 +1,5 @@
 
-# Development Environment Setup
+# Devenv 
 
 Welcome to my automated development environment setup, inspired by [ThePrimeagen](https://github.com/ThePrimeagen). This configuration streamlines your workflow with efficient tools and custom configurations.
 
